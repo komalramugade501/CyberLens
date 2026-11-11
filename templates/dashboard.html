@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}Dashboard | CyberLens{% endblock %}
+{% block content %}<section class="dashhead"><div><div class="eyebrow">SECURITY CONSOLE</div><h1>Welcome, {{ current_user.username }}</h1><p class="muted">Review your account's recorded login activity.</p></div><a class="button secondary" href="{{ url_for('export_csv') }}">↓ Export CSV</a></section>
+<div class="metrics dashboard-metrics"><div><small>TOTAL EVENTS</small><strong>{{ total }}</strong></div><div><small>SUCCESSFUL</small><strong class="green">{{ successful }}</strong></div><div><small>FAILED</small><strong class="red">{{ failed }}</strong></div><div><small>SUSPICIOUS</small><strong class="amber">{{ suspicious }}</strong></div></div>
+<section class="panel"><h2>Simulation lab</h2><p class="muted">Generate synthetic events to demonstrate detection. These are not real attacks.</p><div class="simrow">
+<form method="post" action="{{ url_for('simulate') }}"><input type="hidden" name="kind" value="failures"><button class="button secondary">Simulate 5 failed attempts</button></form>
+<form method="post" action="{{ url_for('simulate') }}"><input type="hidden" name="kind" value="new_location"><button class="button secondary">Simulate new location</button></form>
+<form method="post" action="{{ url_for('simulate') }}"><input type="hidden" name="kind" value="unusual_time"><button class="button secondary">Simulate unusual hours</button></form>
+</div></section>
+<section class="panel"><div class="tablehead"><h2>Recent login activity</h2><input id="filter" placeholder="Search activity..."></div><div class="tablewrap"><table id="activity"><thead><tr><th>Time</th><th>Status</th><th>Location</th><th>IP</th><th>Device</th><th>Risk</th></tr></thead><tbody>
+{% for r in records %}<tr><td>{{ r.timestamp.strftime('%d %b %Y, %H:%M') }}</td><td><span class="pill {{ 'ok' if r.status == 'Successful' else 'bad' }}">{{ r.status }}</span></td><td>{{ r.location or '—' }}</td><td>{{ r.ip_address or '—' }}</td><td>{{ r.device or '—' }} / {{ r.browser or '—' }}</td><td>{% if r.is_suspicious %}<span class="pill warn" title="{{ r.suspicious_reason }}">Flagged: {{ r.suspicious_reason }}</span>{% else %}<span class="muted">Normal</span>{% endif %}</td></tr>{% else %}<tr><td colspan="6">No activity recorded yet.</td></tr>{% endfor %}
+</tbody></table></div></section>{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}{% block title %}CyberLens | See Beyond the Login{% endblock %}
+{% block content %}
+<section class="hero">
+<div class="eyebrow">INTELLIGENT LOGIN SECURITY SYSTEM</div>
+<h1>See Beyond the Login.<br><span>Detect the Threat.</span></h1>
+<p class="lead">CyberLens monitors login activity, identifies unusual access patterns, and highlights potential account security threats.</p>
+<div class="actions"><a class="button" href="{{ url_for('register') }}">Explore the Dashboard →</a><a class="button secondary" href="#how">How it works</a></div>
+<div class="preview"><div class="previewtop"><span>LIVE SECURITY OVERVIEW</span><span class="live">● DEMO VIEW</span></div>
+<div class="metrics"><div><small>LOGIN MONITORING</small><strong>24/7</strong></div><div><small>RISK SIGNALS</small><strong>03</strong></div><div><small>RESPONSE</small><strong>Real-time</strong></div></div>
+<div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<p class="muted">Illustrative interface preview — not live monitoring data.</p></div>
+</section>
+<section id="features" class="section"><div class="eyebrow">WHY CYBERLENS</div><h2>Visibility for every login.</h2><div class="cards">
+<article><b>01 / Monitor</b><h3>Login activity tracking</h3><p>Keep a history of successful and failed access attempts with useful context.</p></article>
+<article><b>02 / Detect</b><h3>Suspicious patterns</h3><p>Flag repeated failures, unfamiliar locations, and unusual access hours.</p></article>
+<article><b>03 / Respond</b><h3>Actionable alerts</h3><p>Review risk reasons and export activity records for further analysis.</p></article>
+</div></section>
+<section id="how" class="section"><div class="eyebrow">WORKFLOW</div><h2>How it works</h2><div class="steps"><div><b>01</b><h3>Capture</h3><p>Record each authentication event.</p></div><div><b>02</b><h3>Analyze</h3><p>Evaluate event context and recent activity.</p></div><div><b>03</b><h3>Flag</h3><p>Mark events that match risk rules.</p></div><div><b>04</b><h3>Review</h3><p>Inspect events in the dashboard.</p></div></div></section>
+<section class="cta"><h2>Make every login visible.</h2><p>Create a demo account to explore the working dashboard.</p><a class="button" href="{{ url_for('register') }}">Create an account →</a></section>
+{% endblock %}

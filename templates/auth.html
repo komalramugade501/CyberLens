@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block title %}{{ mode|title }} | CyberLens{% endblock %}
+{% block content %}<section class="auth"><div class="eyebrow">CYBERLENS SECURE ACCESS</div><h1>{{ 'Create your account' if mode == 'register' else 'Welcome back' }}</h1><p class="muted">{{ 'Register to start monitoring demo login activity.' if mode == 'register' else 'Sign in to view your security dashboard.' }}</p>
+<form method="post">
+{% if mode == 'register' %}<label>Username</label><input name="username" minlength="3" required placeholder="Choose a username"><label>Email</label><input type="email" name="email" required placeholder="you@example.com">{% else %}<label>Username or email</label><input name="identity" required placeholder="Username or email">{% endif %}
+<label>Password</label><input type="password" name="password" minlength="8" required placeholder="At least 8 characters">
+<button class="button full" type="submit">{{ 'Create account' if mode == 'register' else 'Sign in' }}</button></form>
+<p class="muted">{{ 'Already registered?' if mode == 'register' else 'New to CyberLens?' }} <a href="{{ url_for('login' if mode == 'register' else 'register') }}">{{ 'Login' if mode == 'register' else 'Create an account' }}</a></p></section>{% endblock %}
